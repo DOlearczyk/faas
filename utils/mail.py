@@ -7,8 +7,8 @@ from email.utils import COMMASPACE, formatdate
 
 
 def send_email(sender, receivers, subject, body=None,
-               attachment_paths=None, server='localhost', mail_user=None,
-               mail_password=None):
+               attachment_paths=None, server='localhost', email_user=None,
+               email_password=None):
     """ Send email function."""
     msg = MIMEMultipart()
     msg['From'] = sender
@@ -29,8 +29,8 @@ def send_email(sender, receivers, subject, body=None,
         smtp = smtplib.SMTP(server)
         smtp.ehlo()
         smtp.starttls()
-        if mail_user and mail_password:
-            smtp.login(mail_user, mail_password)
+        if email_user and email_password:
+            smtp.login(email_user, email_password)
         smtp.sendmail(sender, receivers, msg.as_string())
         smtp.close()
         print('Successfully sent the mail')
